@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="YDS Kelime Bankası">
+<link rel="manifest" href="manifest.json">
+<title>YDS Kelime Bankası</title>
+<style>
+:root{color-scheme:dark;--bg:#08090b;--card:#121418;--card2:#181b20;--text:#f4f5f7;--muted:#9da3ad;--line:#292d35;--accent:#ffffff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(8,9,11,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:18px 16px 14px}
+h1{font-size:25px;margin:0 0 4px;font-weight:750}.sub{color:var(--muted);font-size:13px}
+.search{margin-top:14px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--text);font-size:16px;outline:none}
+.toolbar{display:flex;gap:8px;margin-top:10px;overflow:auto}.btn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;white-space:nowrap}
+.btn.active{background:#f4f5f7;color:#08090b}
+main{max-width:900px;margin:auto;padding:12px 14px 90px}.count{font-size:13px;color:var(--muted);margin:4px 2px 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px;margin:9px 0;display:flex;align-items:center;gap:12px}
+.word{font-size:18px;font-weight:720}.meaning{font-size:14px;color:#c6cad1;margin-top:5px;line-height:1.45}
+.num{color:#676e7a;font-size:12px;min-width:38px}.star{margin-left:auto;border:0;background:transparent;color:#7d8490;font-size:22px;padding:5px}.star.on{color:#fff}
+.empty{text-align:center;color:var(--muted);padding:40px 15px}
+@media(min-width:700px){.card{padding:17px 20px}.word{font-size:19px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>YDS Kelime Bankası</h1>
+  <div class="sub">Dark Mode · YDS / YÖKDİL kelime arşivi</div>
+  <input id="search" class="search" placeholder="Kelime veya Türkçe anlam ara…" autocomplete="off">
+  <div class="toolbar">
+    <button class="btn active" data-filter="all">Tümü</button>
+    <button class="btn" data-filter="fav">Favoriler</button>
+    <button class="btn" data-filter="learned">Öğrendiklerim</button>
+    <button class="btn" id="random">Rastgele</button>
+  </div>
+</header>
+<main>
+  <div id="count" class="count"></div>
+  <section id="list"></section>
+</main>
+<script src="words.js"></script>
+<script>
+const KEY="ydsKelimeBankasiV1";
+let state=JSON.parse(localStorage.getItem(KEY)||'{"fav":[],"learned":[]}');
+let filter="all", q="";
+const list=document.getElementById("list"), count=document.getElementById("count"), search=document.getElementById("search");
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function render(){
+ let a=window.YDS_WORDS.filter(x=>{
+   const s=(x.word+" "+x.meaning).toLocaleLowerCase("tr-TR");
+   const ok=!q||s.includes(q);
+   const f=filter==="all"||(filter==="fav"&&state.fav.includes(x.id))||(filter==="learned"&&state.learned.includes(x.id));
+   return ok&&f;
+ });
+ count.textContent=a.length+" kelime gösteriliyor";
+ list.innerHTML=a.map(x=>`<article class="card">
+   <div class="num">#${x.id}</div><div style="flex:1"><div class="word">${esc(x.word)}</div><div class="meaning">${esc(x.meaning)}</div></div>
+   <button class="star ${state.fav.includes(x.id)?"on":""}" onclick="toggleFav(${x.id})" aria-label="Favori">★</button>
+ </article>`).join("")||'<div class="empty">Aradığın kelime bulunamadı.</div>';
+}
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function toggleFav(id){state.fav=state.fav.includes(id)?state.fav.filter(x=>x!==id):[...state.fav,id];save();render()}
+search.oninput=e=>{q=e.target.value.trim().toLocaleLowerCase("tr-TR");render()}
+document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll(".btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()});
+document.getElementById("random").onclick=()=>{const x=window.YDS_WORDS[Math.floor(Math.random()*window.YDS_WORDS.length)];search.value=x.word;q=x.word.toLocaleLowerCase("tr-TR");filter="all";document.querySelectorAll(".btn").forEach(x=>x.classList.remove("active"));document.querySelector('[data-filter="all"]').classList.add("active");render();window.scrollTo({top:0,behavior:"smooth"})}
+render();
+</script>
+<script>if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');</script>
+</body>
+</html>

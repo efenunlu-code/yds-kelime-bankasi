@@ -1,0 +1,10 @@
+{
+  "name": "YDS Kelime Bankası",
+  "short_name": "YDS Kelime",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#08090b",
+  "theme_color": "#08090b",
+  "lang": "tr",
+  "description": "YDS / YÖKDİL kelime bankası"
+}
