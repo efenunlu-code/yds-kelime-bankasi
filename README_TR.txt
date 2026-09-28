@@ -1,22 +1,24 @@
-# YDS Kelime Bankası v4 · 60+ Kademeli Program
+YDS KELİME BANKASI v5
+======================
 
-Bu sürüm 1493 kelimelik mevcut veri setini kullanır. AI/API yoktur. Öğrenme verisi tarayıcıdaki localStorage içinde tutulur.
+Bu sürüm GitHub Pages / PWA olarak çalışır.
 
-## Öğrenme zinciri
-Tanıma → Anlamlandırma → Cümlede/bağlamda görme → Ayırt etme → Hatırlama → Aralıklı tekrar.
+İÇERİK
+- Kullanıcının verdiği YDS/YÖKDİL PDF'sinden çıkarılmış 1493 benzersiz kelime/ifade.
+- 60+ -> 70+ -> 85+ -> 90+ -> 95+ -> 100 kademeli yapı.
+- Yerel hafıza ve aralıklı tekrar.
+- Yanlışlar için ayrı tekrar oturumu.
+- 5 soru tipi: EN→TR, TR→EN, Anlam→Kelime, Bağlam, Anlam Ayırt Etme.
+- İstendiği zaman açılabilen 40 soruluk / 40 dakikalık kelime deneme sınavı.
+- Deneme sonuçları cihazın localStorage alanında tutulur.
+- Koyu/dark tema.
+- OpenAI API veya başka ücretli API kullanılmaz.
 
-## 5 soru tipi
-1. EN → TR
-2. TR → EN
-3. Anlam → Kelime
-4. Bağlam
-5. Anlam ayırt etme
+VERİ SETİ NOTU
+PDF kapağında "1492 kelime" yazsa da veri çıkarımı sonucunda 1493 benzersiz kelime/ifade elde edilmiştir. Sütun başlıkları veri olarak sayılmamıştır. Bu nedenle 1493 kayıt korunmuştur; yapay olarak 2000'e tamamlanmamıştır.
 
-## Tekrar
-Doğru cevaplarda 1 → 2 → 4 → 7 → 14 → 30 gün; yanlışlarda yaklaşık 10 dakika sonra erken tekrar. Yanlışlar ayrıca özel tekrar oturumuna alınır.
-
-## Hedef
-İlk basamak 60+. Sonraki aşamalar 70+, 85+, 90+, 95+ ve 100. İlerleme yüzdesi sınav puanı tahmini değildir.
-
-## GitHub Pages
-index.html, words.js, manifest.json, sw.js ve .nojekyll dosyalarını repository ana dizinine yükleyin. Pages kaynağı main / root olmalıdır.
+GITHUB PAGES
+- Tüm dosyaları repository'nin ana dizinine yükleyin.
+- Settings > Pages > Deploy from a branch > main > /(root).
+- index.html ana dizinde kalmalıdır.
+- Güncellemeden sonra eski PWA önbelleği görülürse sayfayı tamamen yenileyin veya service worker/site verisini temizleyin.
