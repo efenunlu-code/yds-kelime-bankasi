@@ -3,71 +3,86 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#07080a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="YDS Kelime Bankası">
 <link rel="manifest" href="manifest.json">
-<title>YDS Kelime Bankası</title>
+<title>YDS Kelime Bankası · 60+ Programı</title>
 <style>
-:root{color-scheme:dark;--bg:#08090b;--card:#121418;--card2:#181b20;--text:#f4f5f7;--muted:#9da3ad;--line:#292d35;--accent:#ffffff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
-header{position:sticky;top:0;z-index:10;background:rgba(8,9,11,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:18px 16px 14px}
-h1{font-size:25px;margin:0 0 4px;font-weight:750}.sub{color:var(--muted);font-size:13px}
-.search{margin-top:14px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--text);font-size:16px;outline:none}
-.toolbar{display:flex;gap:8px;margin-top:10px;overflow:auto}.btn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:9px 12px;border-radius:12px;white-space:nowrap}
-.btn.active{background:#f4f5f7;color:#08090b}
-main{max-width:900px;margin:auto;padding:12px 14px 90px}.count{font-size:13px;color:var(--muted);margin:4px 2px 10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px;margin:9px 0;display:flex;align-items:center;gap:12px}
-.word{font-size:18px;font-weight:720}.meaning{font-size:14px;color:#c6cad1;margin-top:5px;line-height:1.45}
-.num{color:#676e7a;font-size:12px;min-width:38px}.star{margin-left:auto;border:0;background:transparent;color:#7d8490;font-size:22px;padding:5px}.star.on{color:#fff}
-.empty{text-align:center;color:var(--muted);padding:40px 15px}
-@media(min-width:700px){.card{padding:17px 20px}.word{font-size:19px}}
+:root{color-scheme:dark;--bg:#07080a;--card:#111318;--card2:#181b21;--line:#292e37;--text:#f5f6f8;--muted:#969eaa;--soft:#20242b;--good:#72d89a;--bad:#ff7e7e;--accent:#fff;--gold:#d9c37a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:30;background:rgba(7,8,10,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:15px 14px 11px}h1{font-size:23px;margin:0 0 2px;font-weight:850}.sub{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:7px;margin-top:12px;overflow:auto}.tab{border:1px solid var(--line);background:var(--card);color:var(--muted);padding:9px 12px;border-radius:11px;white-space:nowrap;font-weight:750}.tab.active{background:var(--accent);color:#08090b}
+main{max-width:780px;margin:auto;padding:14px 14px 100px}.view{display:none}.view.active{display:block}
+.hero{background:linear-gradient(145deg,#15181e,#0e1014);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:12px}.hero h2{margin:0 0 7px;font-size:22px}.hero p{margin:0;color:#c4c9d1;font-size:14px;line-height:1.55}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}.goal{display:flex;justify-content:space-between;align-items:end;margin-top:17px}.goal strong{font-size:31px}.goal small{color:var(--muted)}.bar{height:9px;background:#272b33;border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .3s}.goalrow{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px}.stat b{font-size:21px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.25}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);padding:11px 13px;border-radius:12px;font-weight:750}.btn.primary{background:#f5f6f8;color:#08090b;border-color:#f5f6f8}.btn.good{border-color:#3d7654;color:var(--good)}.btn.bad{border-color:#713f3f;color:var(--bad)}.btn:disabled{opacity:.45;cursor:not-allowed}.wide{width:100%}
+.plan,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;margin-top:12px}.plan h3,.panel h3{margin:0 0 10px;font-size:16px}.planrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:13px}.planrow:first-of-type{border-top:0}.muted{color:var(--muted)}.note{color:var(--muted);font-size:11px;line-height:1.55;margin-top:12px}
+.targetgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}.target{border:1px solid var(--line);border-radius:11px;padding:9px 5px;text-align:center;color:var(--muted);font-size:11px;background:var(--card)}.target.active{border-color:#f5f6f8;color:#fff;background:#1b1e24}.target.done{color:var(--good);border-color:#355a45}
+.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;color:var(--text);font-size:16px;outline:none;margin-bottom:10px}.toolbar{display:flex;gap:7px;overflow:auto;margin-bottom:10px}.toolbar .btn{white-space:nowrap;padding:9px 11px}.toolbar .active{background:#f5f6f8;color:#08090b}.count{font-size:12px;color:var(--muted);margin:4px 2px 9px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 15px;margin:9px 0}.cardtop{display:flex;gap:10px;align-items:start}.word{font-size:18px;font-weight:800}.meaning{font-size:14px;color:#c6cad2;margin-top:5px;line-height:1.45}.num{color:#676e7a;font-size:11px;min-width:38px}.star{margin-left:auto;border:0;background:transparent;color:#737a86;font-size:21px;padding:0 2px}.star.on{color:#fff}.level{font-size:10px;color:var(--muted);margin-top:9px}.dots{display:flex;gap:4px;margin-top:5px}.dots i{width:18px;height:4px;border-radius:5px;background:#2c3037}.dots i.on{background:#f4f5f7}.statusline{display:flex;gap:8px;align-items:center;margin-top:9px;font-size:10px;color:var(--muted)}.badge{border:1px solid var(--line);border-radius:99px;padding:3px 7px}
+.session{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px}.sessionhead{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.sessionbar{height:5px;background:#282c33;border-radius:99px;margin:11px 0 2px;overflow:hidden}.sessionbar i{display:block;height:100%;background:#fff}.stage{display:inline-block;margin-top:15px;font-size:11px;border:1px solid var(--line);border-radius:99px;padding:5px 8px;color:var(--muted)}.question{font-size:28px;font-weight:850;margin:18px 0 7px;line-height:1.2}.questionMeaning{color:var(--muted);font-size:13px;margin-bottom:14px;line-height:1.45}.options{display:grid;gap:9px}.option{text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--text);padding:13px;border-radius:13px;font-size:15px;line-height:1.35}.option.correct{border-color:#4f9667;background:#18251d}.option.wrong{border-color:#a14f4f;background:#281919}.feedback{min-height:26px;margin:13px 0 4px;font-size:13px;font-weight:700;line-height:1.45}.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}.actions{display:flex;gap:8px;margin-top:10px}.actions .btn{flex:1}.learnbox{background:#0d0f13;border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:15px}.learnword{font-size:30px;font-weight:850}.learnmeaning{font-size:17px;margin-top:7px;color:#d7dbe2}.example{margin-top:13px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.5}.sessiondone{text-align:center;padding:35px 10px}.sessiondone h2{margin:0 0 8px}.sessiondone p{color:var(--muted);line-height:1.5}.streak{font-size:12px;color:var(--gold);margin-top:8px}
+.settings{display:grid;gap:10px}.setting{display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid var(--line);padding:11px 0}.setting:first-child{border-top:0}.setting label{font-size:13px}.setting small{display:block;color:var(--muted);margin-top:3px}.number{width:78px;background:var(--card2);border:1px solid var(--line);color:var(--text);padding:9px;border-radius:10px;text-align:center}
+.empty{text-align:center;color:var(--muted);padding:35px 15px}
+@media(min-width:650px){main{padding-top:20px}.hero h2{font-size:24px}.question{font-size:34px}}
 </style>
 </head>
 <body>
-<header>
-  <h1>YDS Kelime Bankası</h1>
-  <div class="sub">Dark Mode · YDS / YÖKDİL kelime arşivi</div>
-  <input id="search" class="search" placeholder="Kelime veya Türkçe anlam ara…" autocomplete="off">
-  <div class="toolbar">
-    <button class="btn active" data-filter="all">Tümü</button>
-    <button class="btn" data-filter="fav">Favoriler</button>
-    <button class="btn" data-filter="learned">Öğrendiklerim</button>
-    <button class="btn" id="random">Rastgele</button>
-  </div>
-</header>
+<header><h1>YDS Kelime Bankası</h1><div class="sub">60+ hedefi · kademeli öğrenme · tekrarlı hafıza</div><nav class="tabs"><button class="tab active" data-view="study">Çalışma</button><button class="tab" data-view="bank">Kelime Bankası</button><button class="tab" data-view="progress">İlerlemem</button><button class="tab" data-view="settings">Ayarlar</button></nav></header>
 <main>
-  <div id="count" class="count"></div>
-  <section id="list"></section>
+<section id="study" class="view active">
+  <div class="hero"><div class="eyebrow">Aktif hedef</div><h2>60+ için kelime temeli</h2><p>Önce kelimeyi tanı, sonra hatırla, yanlışlarını kısa aralıkta tekrar et ve doğru bildikçe tekrar aralığını aç. Amaç tek seferde çok kelime değil, kalıcı kelime hafızası oluşturmaktır.</p>
+    <div class="goal"><div><small>60+ hazırlık ilerlemesi</small><br><strong id="masteryPct">0%</strong></div><div class="muted" id="masteryText">başlangıç</div></div><div class="bar"><i id="masteryBar" style="width:0%"></i></div><div class="goalrow"><span id="coreText">İlk 600 kelimelik temel</span><span id="masteryCount">0 / 600</span></div>
+    <div class="targetgrid"><div class="target active" data-t="60">60+</div><div class="target" data-t="70">70+</div><div class="target" data-t="85">85+</div><div class="target" data-t="90">90+</div><div class="target" data-t="95">95+</div></div>
+  </div>
+  <div class="stats"><div class="stat"><b id="todayDone">0</b><span>Bugün cevaplanan</span></div><div class="stat"><b id="todayCorrect">0</b><span>Bugün doğru</span></div><div class="stat"><b id="dueCount">0</b><span>Tekrar zamanı</span></div></div>
+  <button id="startBtn" class="btn primary wide">Bugünkü çalışmaya başla</button>
+  <div class="plan"><h3>Bugünkü yöntem</h3><div class="planrow"><span>1 · Yeni kelimeler</span><b id="newPlan">12</b></div><div class="planrow"><span>2 · Zamanı gelen tekrarlar</span><b id="reviewPlan">20</b></div><div class="planrow"><span>3 · Yanlış kelimeler</span><span class="muted">öncelikli</span></div><div class="planrow"><span>4 · Doğru cevap</span><span class="muted">seviye +1</span></div><div class="planrow"><span>5 · Yanlış cevap</span><span class="muted">seviye düşer · erken tekrar</span></div></div>
+  <div class="note">Bu yüzde bir YDS puanı tahmini değildir. Uygulama içindeki kelime öğrenme ilerlemesidir. 60+ hedefi çalışma yönünü belirler; gerçek sınav puanı ayrıca soru çözümü, gramer, okuma ve diğer becerilere bağlıdır.</div>
+</section>
+<section id="session" class="view"><div id="sessionBox" class="session"></div></section>
+<section id="bank" class="view"><input id="search" class="search" placeholder="Kelime veya Türkçe anlam ara…" autocomplete="off"><div class="toolbar"><button class="btn active" data-filter="all">Tümü</button><button class="btn" data-filter="fav">Favoriler</button><button class="btn" data-filter="learned">Öğrendiklerim</button><button class="btn" data-filter="due">Tekrar zamanı</button><button class="btn" id="random">Rastgele</button></div><div id="count" class="count"></div><section id="list"></section></section>
+<section id="progress" class="view"><div class="hero"><div class="eyebrow">Kademeli ilerleme</div><h2>Önce 60+, sonra bir üst aşama</h2><p>Program önce temel kelime çekirdeğini sağlamlaştırır. Yeterli kelime seviyesi oluştuğunda sonraki hedefler görünür hale gelir.</p></div><div class="stats"><div class="stat"><b id="knownCount">0</b><span>Seviye 3–5</span></div><div class="stat"><b id="learningCount">0</b><span>Seviye 1–2</span></div><div class="stat"><b id="newCount">0</b><span>Henüz başlanmamış</span></div></div><div class="panel"><h3>Öğrenme seviyeleri</h3><div class="planrow"><span>Seviye 0</span><span class="muted">Yeni / tanışma</span></div><div class="planrow"><span>Seviye 1</span><span class="muted">İlk doğru hatırlama</span></div><div class="planrow"><span>Seviye 2</span><span class="muted">Kısa tekrar</span></div><div class="planrow"><span>Seviye 3</span><span class="muted">Temel olarak öğrenildi</span></div><div class="planrow"><span>Seviye 4</span><span class="muted">Pekişti</span></div><div class="planrow"><span>Seviye 5</span><span class="muted">Uzun aralıklı tekrar</span></div></div><div class="panel"><h3>Tekrar sistemi</h3><div class="planrow"><span>Doğru</span><span class="muted">0 → 1 → 2 → 4 → 7 → 14 → 30 gün</span></div><div class="planrow"><span>Yanlış</span><span class="muted">seviye düşer + yaklaşık 10 dk sonra tekrar</span></div></div></section>
+<section id="settings" class="view"><div class="panel"><h3>Günlük çalışma ayarları</h3><div class="settings"><div class="setting"><div><label>Yeni kelime</label><small>Her gün tanışılacak yeni kelime sayısı</small></div><input id="dailyNew" class="number" type="number" min="5" max="30"></div><div class="setting"><div><label>Tekrar limiti</label><small>Günde alınacak tekrar kelimesi üst sınırı</small></div><input id="dailyReview" class="number" type="number" min="5" max="50"></div></div><button id="saveSettings" class="btn primary wide" style="margin-top:12px">Ayarları kaydet</button></div><div class="panel"><h3>Hedef sırası</h3><div class="planrow"><span>1. aşama</span><b>60+</b></div><div class="planrow"><span>2. aşama</span><b>70+</b></div><div class="planrow"><span>3. aşama</span><b>85+</b></div><div class="planrow"><span>4. aşama</span><b>90+</b></div><div class="planrow"><span>5. aşama</span><b>95+</b></div><div class="planrow"><span>6. aşama</span><b>100</b></div></div><button id="reset" class="btn bad wide">Tüm öğrenme ilerlemesini sıfırla</button></section>
 </main>
 <script src="words.js"></script>
 <script>
-const KEY="ydsKelimeBankasiV1";
-let state=JSON.parse(localStorage.getItem(KEY)||'{"fav":[],"learned":[]}');
-let filter="all", q="";
-const list=document.getElementById("list"), count=document.getElementById("count"), search=document.getElementById("search");
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
-function render(){
- let a=window.YDS_WORDS.filter(x=>{
-   const s=(x.word+" "+x.meaning).toLocaleLowerCase("tr-TR");
-   const ok=!q||s.includes(q);
-   const f=filter==="all"||(filter==="fav"&&state.fav.includes(x.id))||(filter==="learned"&&state.learned.includes(x.id));
-   return ok&&f;
- });
- count.textContent=a.length+" kelime gösteriliyor";
- list.innerHTML=a.map(x=>`<article class="card">
-   <div class="num">#${x.id}</div><div style="flex:1"><div class="word">${esc(x.word)}</div><div class="meaning">${esc(x.meaning)}</div></div>
-   <button class="star ${state.fav.includes(x.id)?"on":""}" onclick="toggleFav(${x.id})" aria-label="Favori">★</button>
- </article>`).join("")||'<div class="empty">Aradığın kelime bulunamadı.</div>';
-}
-function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function toggleFav(id){state.fav=state.fav.includes(id)?state.fav.filter(x=>x!==id):[...state.fav,id];save();render()}
-search.oninput=e=>{q=e.target.value.trim().toLocaleLowerCase("tr-TR");render()}
-document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll(".btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()});
-document.getElementById("random").onclick=()=>{const x=window.YDS_WORDS[Math.floor(Math.random()*window.YDS_WORDS.length)];search.value=x.word;q=x.word.toLocaleLowerCase("tr-TR");filter="all";document.querySelectorAll(".btn").forEach(x=>x.classList.remove("active"));document.querySelector('[data-filter="all"]').classList.add("active");render();window.scrollTo({top:0,behavior:"smooth"})}
-render();
+const KEY='ydsKelimeBankasiV3';
+const words=window.YDS_WORDS||[];const CORE=Math.min(600,words.length);
+const defaults={dailyNew:12,dailyReview:20};
+let cfg=JSON.parse(localStorage.getItem(KEY+'_cfg')||'null')||defaults;
+let state=JSON.parse(localStorage.getItem(KEY)||'null');
+if(!state){const old=JSON.parse(localStorage.getItem('ydsKelimeBankasiV2')||localStorage.getItem('ydsKelimeBankasiV1')||'null');state={words:{},fav:old&&Array.isArray(old.fav)?old.fav:[],daily:{date:'',answered:0,correct:0,newIds:[]},streak:{last:'',days:0}}}
+state.words=state.words||{};state.fav=state.fav||[];state.daily=state.daily||{date:'',answered:0,correct:0,newIds:[]};state.streak=state.streak||{last:'',days:0};
+let filter='all',q='',session=[],si=0,locked=false,stage='';
+const today=()=>new Date().toLocaleDateString('en-CA');const now=()=>Date.now();const dayMs=86400000;
+function save(){localStorage.setItem(KEY,JSON.stringify(state));localStorage.setItem(KEY+'_cfg',JSON.stringify(cfg))}
+function resetDaily(){const t=today();if(state.daily.date!==t){const prev=state.daily.date;state.daily={date:t,answered:0,correct:0,newIds:[]};if(prev){const d=(new Date(t)-new Date(prev))/dayMs;state.streak.days=d===1?state.streak.days+1:1}else state.streak.days=1;state.streak.last=t;save()}}
+resetDaily();
+function meta(id){return state.words[id]||{level:0,due:0,seen:0,correct:0,wrong:0,exposed:0}}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function norm(s){return(s||'').toLocaleLowerCase('tr-TR')}function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function delay(level){return [0,1,2,4,7,14,30][Math.min(6,level)]*dayMs}
+function isDue(x){const m=meta(x.id);return m.level>0&&m.due<=now()||m.level===0&&m.due>0&&m.due<=now()}
+function update(id,ok){let m={...meta(id)};m.seen++;ok?m.correct++:m.wrong++;m.level=ok?Math.min(5,m.level+1):Math.max(0,m.level-1);m.due=now()+(ok?delay(m.level):10*60*1000);state.words[id]=m;state.daily.answered++;if(ok)state.daily.correct++;save()}
+function expose(id){let m={...meta(id),exposed:(meta(id).exposed||0)+1};if(m.level===0&&m.due===0)m.due=now();state.words[id]=m;save()}
+function candidates(){resetDaily();const due=shuffle(words.filter(isDue)).slice(0,cfg.dailyReview);const used=new Set(due.map(x=>x.id));const coreNew=shuffle(words.filter(x=>meta(x.id).level===0&&!used.has(x.id)&&x.id<=CORE)).slice(0,cfg.dailyNew);let newWords=coreNew;if(newWords.length<cfg.dailyNew){newWords=[...newWords,...shuffle(words.filter(x=>meta(x.id).level===0&&!used.has(x.id)&&!coreNew.includes(x))).slice(0,cfg.dailyNew-newWords.length)]}state.daily.newIds=newWords.map(x=>x.id);save();return [...due,...newWords]}
+function coreMastered(){return words.slice(0,CORE).filter(x=>meta(x.id).level>=3).length}
+function mastery(){return Math.round(coreMastered()/CORE*100)}
+function updateDash(){resetDaily();const p=mastery();document.getElementById('masteryPct').textContent=p+'%';document.getElementById('masteryBar').style.width=p+'%';document.getElementById('masteryCount').textContent=coreMastered()+' / '+CORE;document.getElementById('masteryText').textContent=p<20?'tanışma aşaması':p<50?'öğrenme aşaması':p<75?'pekiştirme aşaması':p<100?'kalıcılık aşaması':'60+ temel tamamlandı';document.getElementById('todayDone').textContent=state.daily.answered;document.getElementById('todayCorrect').textContent=state.daily.correct;document.getElementById('dueCount').textContent=words.filter(isDue).length;document.getElementById('newPlan').textContent=cfg.dailyNew;document.getElementById('reviewPlan').textContent=cfg.dailyReview;let k=0,l=0,n=0;words.forEach(x=>{const a=meta(x.id).level;if(a>=3)k++;else if(a>0)l++;else n++});document.getElementById('knownCount').textContent=k;document.getElementById('learningCount').textContent=l;document.getElementById('newCount').textContent=n;document.getElementById('dailyNew').value=cfg.dailyNew;document.getElementById('dailyReview').value=cfg.dailyReview;document.querySelectorAll('.target').forEach((el,i)=>{el.classList.toggle('active',i===0);el.classList.toggle('done',p>=100&&i===0)})}
+function view(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.view===id));if(id!=='session')updateDash();if(id==='bank')renderBank()}
+document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>view(x.dataset.view));
+document.getElementById('startBtn').onclick=()=>{session=candidates();si=0;view('session');render()};
+function makeQ(x){const reverse=Math.random()<.5;const correct=reverse?x.word:x.meaning;const pool=shuffle(words.filter(y=>y.id!==x.id)).slice(0,3).map(y=>reverse?y.word:y.meaning);return{reverse,correct,options:shuffle([correct,...pool])}}
+function render(){const box=document.getElementById('sessionBox');if(si>=session.length){box.innerHTML='<div class="sessiondone"><h2>Bugünkü çalışma tamamlandı 🎯</h2><p>'+state.daily.answered+' cevap · '+state.daily.correct+' doğru</p><div class="streak">🔥 '+state.streak.days+' günlük çalışma serisi</div><button class="btn primary wide" onclick="view(\'study\')" style="margin-top:15px">Çalışma ekranına dön</button></div>';updateDash();return}locked=false;const x=session[si],m=meta(x.id);if(m.level===0&&m.exposed===0){stage='exposure';expose(x.id);box.innerHTML='<div class="sessionhead"><span>Kelime '+(si+1)+' / '+session.length+'</span><span>Yeni kelime</span></div><div class="sessionbar"><i style="width:'+((si)/session.length*100)+'%"></i></div><div class="stage">1 · Tanışma</div><div class="learnbox"><div class="learnword">'+esc(x.word)+'</div><div class="learnmeaning">'+esc(x.meaning)+'</div><div class="example">Bu aşamada senden ezber testi istemiyoruz. Kelimeyi ve anlamını gör, zihninde bir kez eşleştir. Hazır olduğunda hatırlama testine geç.</div></div><div class="actions"><button class="btn primary wide" onclick="startRecall()">Hatırlama testine geç</button></div>';return}stage='recall';const qst=makeQ(x);session[si]._q=qst;box.innerHTML='<div class="sessionhead"><span>Kelime '+(si+1)+' / '+session.length+'</span><span>Seviye '+m.level+'/5</span></div><div class="sessionbar"><i style="width:'+((si+1)/session.length*100)+'%"></i></div><div class="stage">'+(qst.reverse?'3 · Hatırlama · TR → EN':'2 · Hatırlama · EN → TR')+'</div><div class="question">'+esc(qst.reverse?x.meaning:x.word)+'</div><div class="questionMeaning">'+(qst.reverse?'Doğru İngilizce kelimeyi seç.':'Doğru Türkçe anlamı seç.')+'</div><div class="options">'+qst.options.map((o,i)=>'<button class="option" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div><div id="feedback" class="feedback"></div><div class="actions"><button id="nextBtn" class="btn primary wide" disabled>Devam et</button></div>';document.querySelectorAll('.option').forEach((b,i)=>b.onclick=()=>answer(i));document.getElementById('nextBtn').onclick=next}
+function startRecall(){render()}
+function answer(i){if(locked)return;locked=true;const x=session[si],qst=session[si]._q,buttons=[...document.querySelectorAll('.option')],ok=qst.options[i]===qst.correct;buttons.forEach((b,j)=>{b.disabled=true;if(qst.options[j]===qst.correct)b.classList.add('correct');else if(j===i)b.classList.add('wrong')});update(x.id,ok);const fb=document.getElementById('feedback');fb.textContent=ok?'Doğru. Kelime bir sonraki tekrar aralığına geçti.':'Yanlış. Bu kelimeyi daha erken tekrar edeceğiz: '+x.word+' = '+x.meaning;fb.className='feedback '+(ok?'good':'bad');document.getElementById('nextBtn').disabled=false}
+function next(){si++;render()}
+function renderBank(){const a=words.filter(x=>{const s=norm(x.word+' '+x.meaning);const textOk=!q||s.includes(q);const m=meta(x.id);const f=filter==='all'||filter==='fav'&&state.fav.includes(x.id)||filter==='learned'&&m.level>=3||filter==='due'&&isDue(x);return textOk&&f});document.getElementById('count').textContent=a.length+' kelime gösteriliyor';document.getElementById('list').innerHTML=a.map(x=>{const m=meta(x.id);return '<article class="card"><div class="cardtop"><div class="num">#'+x.id+'</div><div style="flex:1"><div class="word">'+esc(x.word)+'</div><div class="meaning">'+esc(x.meaning)+'</div><div class="level">Öğrenme seviyesi '+m.level+'/5</div><div class="dots">'+[1,2,3,4,5].map(n=>'<i class="'+(n<=m.level?'on':'')+'"></i>').join('')+'</div><div class="statusline">'+(isDue(x)?'<span class="badge">Tekrar zamanı</span>':'')+' '+(m.level>=3?'<span class="badge">Öğrenildi</span>':'')+'</div></div><button class="star '+(state.fav.includes(x.id)?'on':'')+'" onclick="toggleFav('+x.id+')">★</button></div></article>'}).join('')||'<div class="empty">Aradığın kelime bulunamadı.</div>'}
+function toggleFav(id){state.fav=state.fav.includes(id)?state.fav.filter(x=>x!==id):[...state.fav,id];save();renderBank()}
+document.getElementById('search').oninput=e=>{q=norm(e.target.value.trim());renderBank()};document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderBank()});document.getElementById('random').onclick=()=>{const x=words[Math.floor(Math.random()*words.length)];document.getElementById('search').value=x.word;q=norm(x.word);view('bank');window.scrollTo({top:0,behavior:'smooth'})};
+document.getElementById('saveSettings').onclick=()=>{cfg.dailyNew=Math.max(5,Math.min(30,Number(document.getElementById('dailyNew').value)||12));cfg.dailyReview=Math.max(5,Math.min(50,Number(document.getElementById('dailyReview').value)||20));save();updateDash();alert('Günlük çalışma ayarları kaydedildi.')};
+document.getElementById('reset').onclick=()=>{if(confirm('Tüm kelime seviyeleri, günlük ilerleme ve tekrar planı silinsin mi? Favoriler korunacaktır.')){state.words={};state.daily={date:today(),answered:0,correct:0,newIds:[]};state.streak={last:today(),days:0};save();updateDash();alert('Öğrenme ilerlemesi sıfırlandı.')}}
+updateDash();renderBank();
 </script>
 <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');</script>
-</body>
-</html>
+</body></html>
