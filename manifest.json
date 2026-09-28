@@ -1,10 +1,9 @@
 {
-  "name": "YDS Kelime Bankası",
-  "short_name": "YDS Kelime",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#08090b",
-  "theme_color": "#08090b",
-  "lang": "tr",
-  "description": "60+ hedefi için kademeli YDS kelime çalışma uygulaması"
+  "name":"YDS Kelime Bankası · 60+ Programı",
+  "short_name":"YDS Kelime Bankası",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#07080a",
+  "theme_color":"#07080a",
+  "lang":"tr"
 }

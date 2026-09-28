@@ -1,0 +1,9 @@
+YDS KELİME BANKASI – VERİ SETİ
+
+Kaynak: Kullanıcı tarafından sağlanan “YDS / YÖKDİL Kelime Listesi” PDF'i.
+PDF başlığında 1492 kelime yazmaktadır. PDF'deki tablo çıkarımı sonucunda 1493 benzersiz İngilizce kelime/ifade kaydı elde edilmiştir; 40 adet “İngilizce” sütun başlığı veri olarak alınmamıştır.
+
+Bu ZIP içindeki words.js dosyası uygulamanın kullandığı veri dosyasıdır.
+
+AI / OpenAI API yoktur.
+Veriler uygulama içinde yerel olarak çalışır.

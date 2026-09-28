@@ -1,20 +1,22 @@
-YDS Kelime Bankası v3 – 60+ Kademeli Öğrenme Programı
+# YDS Kelime Bankası v4 · 60+ Kademeli Program
 
-İçerik:
-- 1493 kelimelik mevcut kelime veri seti
-- Dark mode mobil arayüz
-- 60+ hedefi için ilk 600 kelimelik temel aşama
-- Tanışma → hatırlama → tekrar → pekiştirme akışı
-- EN→TR ve TR→EN çoktan seçmeli hatırlama
-- Yanlışlarda yaklaşık 10 dakika sonra erken tekrar
-- Doğru cevaplarda 1, 2, 4, 7, 14 ve 30 günlük aralıklar
-- Favoriler, arama, tekrar zamanı ve öğrenilenler filtreleri
-- Günlük yeni kelime ve tekrar sayısı ayarlanabilir
-- localStorage ile cihaz üzerinde ilerleme kaydı
-- AI/API yoktur
+Bu sürüm 1493 kelimelik mevcut veri setini kullanır. AI/API yoktur. Öğrenme verisi tarayıcıdaki localStorage içinde tutulur.
 
-GitHub Pages:
-Repository köküne index.html, words.js, manifest.json, sw.js ve .nojekyll dosyalarını koyun.
-Settings → Pages → Deploy from a branch → main → /(root) → Save.
+## Öğrenme zinciri
+Tanıma → Anlamlandırma → Cümlede/bağlamda görme → Ayırt etme → Hatırlama → Aralıklı tekrar.
 
-Not: İlerleme yüzdesi gerçek YDS puanı değildir; uygulama içi kelime öğrenme ölçümüdür.
+## 5 soru tipi
+1. EN → TR
+2. TR → EN
+3. Anlam → Kelime
+4. Bağlam
+5. Anlam ayırt etme
+
+## Tekrar
+Doğru cevaplarda 1 → 2 → 4 → 7 → 14 → 30 gün; yanlışlarda yaklaşık 10 dakika sonra erken tekrar. Yanlışlar ayrıca özel tekrar oturumuna alınır.
+
+## Hedef
+İlk basamak 60+. Sonraki aşamalar 70+, 85+, 90+, 95+ ve 100. İlerleme yüzdesi sınav puanı tahmini değildir.
+
+## GitHub Pages
+index.html, words.js, manifest.json, sw.js ve .nojekyll dosyalarını repository ana dizinine yükleyin. Pages kaynağı main / root olmalıdır.
